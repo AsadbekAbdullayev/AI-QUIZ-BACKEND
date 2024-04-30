@@ -1,0 +1,92 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  ai:
+    openai:
+      api-key: ${AZURE_OPENAI_KEY}
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: 14c42a6479383cdb9965
+            clientSecret: c15752e194c7a0557af4f519e1f523e4d8e3f209
+#
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/aiquestdb}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:husanboy2002}
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        format_sql: true
+  sql:
+    init:
+      mode: always
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+  mail:
+    password: ${SMTP_PASSWORD}
+    host: smtp.gmail.com
+    port: 465
+    username: aiquestuz@gmail.com
+    debug: true
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      ssl.enable: true
+#      mail.smtp.connection-timeout: 5000
+#      mail.smtp.timeout: 3000
+#      mail.smtp.write timeout: 5000
+#      mail.smtp.from: talent-management@itic.uz
+#      mail.smtp.ssl.checkserveridentity: false
+#      mail.smtp.ssl.trust: "*"
+  servlet:
+    multipart:
+      max-file-size: 15MB
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          openfeign: DEBUG
+        web: DEBUG
+    com:
+      zaxxer:
+        hikari: TRACE
+      apache:
+        http: DEBUG
+    httpclient:
+      wire: DEBUG
+
+  file:
+    name: ../log.log
+email:
+  url:
+    template: https://aiquest.uz/verify/TOKEN
+    reset: https://aiquest.uz/reset/TOKEN
+    ai: ewh7pluWuM6eoqyLB_ZGYwps1gmgaUE9h2iIQP-jk3JiC-QP0ENjItxzpwgDQa79oW4YOA.
+file:
+  server:
+    domain-name: 'https://dev.api.talent.itic.uz'
+external:
+  linkedin:
+    api-url: https://linkedin-api8.p.rapidapi.com/
+#    api-url: http://localhost:8081
+    api-key: 28b2cebfeamsh1743560f6409d9bp18ff90jsn32b8610ba96b
+    api-host: linkedin-api8.p.rapidapi.com
+recaptcha:
+  secret-key: 6Lf93r4pAAAAAOZhj3MUzkrY_dJaOyEohipLi44B
+  verify-url: https://www.google.com/recaptcha/api/siteverify
